@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:8
+    container_name: brent-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 34KWIDR
+      MYSQL_DATABASE: brent_db1
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    container_name: brent-backend
+    environment:
+      - FLASK_ENV=development
+    ports:
+      - "5001:5001"
+    depends_on:
+      - db
+
+  frontend:
+    build: .
+    container_name: brent-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  db_data: 

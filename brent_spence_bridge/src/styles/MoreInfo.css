@@ -1,0 +1,112 @@
+.default {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.default h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.default h3 {
+    color: #34495e;
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem 0;
+    font-weight: 600;
+}
+
+.default h4 {
+    color: #34495e;
+    font-size: 1.4rem;
+    margin: 1.5rem 0 1rem 0;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.rows2 {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+
+.rows3 {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+
+.ceas-logo {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.brlogo {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.bsb-corridor {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 8px;
+    margin: 0 auto;
+    display: block;
+}
+
+.uci-info {
+    color: #34495e;
+    line-height: 1.6;
+    font-size: 1rem;
+    margin: 0;
+    flex: 1;
+}
+
+.default li {
+    color: #34495e;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    list-style-type: disc;
+    margin-left: 1.5rem;
+}
+
+.default br {
+    margin: 0.5rem 0;
+}
+
+@media (max-width: 768px) {
+    .rows2 {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .ceas-logo, .brlogo {
+        width: 120px;
+    }
+    
+    .default h1 {
+        font-size: 2rem;
+    }
+    
+    .default h3 {
+        font-size: 1.5rem;
+    }
+    
+    .default h4 {
+        font-size: 1.2rem;
+    }
+}
