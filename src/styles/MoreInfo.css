@@ -1,0 +1,91 @@
+/* MoreInfo.css */
+
+.default {
+  padding: 80px 2rem 2rem 2rem;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+.default h1 {
+  text-align: center;
+  color: #353849;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.rows2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 2rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.rows3 {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.rows3 h3, .rows3 h4 {
+  color: #353849;
+  margin-bottom: 1rem;
+}
+
+.rows3 li {
+  margin-left: 2rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+.ceas-logo {
+  max-width: 200px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.brlogo {
+  max-width: 300px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.bsb-corridor {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.uci-info {
+  flex: 1;
+  line-height: 1.6;
+  color: #444;
+  font-size: 1rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .rows2 {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .default {
+    padding: 80px 1rem 2rem 1rem;
+  }
+  
+  .default h1 {
+    font-size: 2rem;
+  }
+  
+  .ceas-logo, .brlogo {
+    max-width: 150px;
+  }
+} 

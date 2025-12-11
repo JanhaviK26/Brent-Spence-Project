@@ -1,0 +1,58 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8
+    container_name: brent-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 34KWIDR
+      MYSQL_DATABASE: brent_db1
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.unified
+    image: brent-spence-project-master
+    container_name: brent-backend
+    command: ["python", "backend/app.py"]
+    environment:
+      - FLASK_ENV=development
+    ports:
+      - "5001:5001"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+
+  frontend:
+    image: brent-spence-project-master
+    container_name: brent-frontend
+    command: ["sh", "-c", "cd frontend && PORT=3001 npm start"]
+    ports:
+      - "3001:3001"
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:alpine
+    container_name: brent-nginx
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - frontend
+      - backend
+    restart: unless-stopped
+
+volumes:
+  db_data: 

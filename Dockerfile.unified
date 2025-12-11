@@ -1,0 +1,46 @@
+# Multi-stage Dockerfile for Brent Spence Project
+# This creates one image containing both frontend and backend
+
+# Stage 1: Build Frontend
+FROM node:18 as frontend-build
+WORKDIR /app/frontend
+COPY package.json package-lock.json* ./
+RUN npm install
+COPY public ./public
+COPY src ./src
+COPY *.json ./
+
+# Stage 2: Setup Backend
+FROM python:3.9-slim as backend-setup
+WORKDIR /app/backend
+COPY backend/requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Stage 3: Final unified image
+FROM python:3.9-slim
+WORKDIR /app
+
+# Install Node.js in the Python image
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Copy backend code and dependencies
+COPY --from=backend-setup /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+COPY --from=backend-setup /usr/local/bin /usr/local/bin
+COPY backend ./backend
+
+# Copy frontend code
+COPY --from=frontend-build /app/frontend ./frontend
+COPY --from=frontend-build /app/frontend/node_modules ./frontend/node_modules
+
+# Copy data directory structure
+COPY data ./data
+
+# Expose ports
+EXPOSE 3000 5001
+
+# Default command (can be overridden in docker-compose)
+CMD ["python", "backend/app.py"]
+

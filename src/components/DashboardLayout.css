@@ -1,0 +1,10 @@
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #FFD700; /* gold-ish on hover */
+  }
